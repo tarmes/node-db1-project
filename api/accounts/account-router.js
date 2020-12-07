@@ -35,7 +35,11 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
    try {
-
+      const { id } = req.params;
+      const editedAccount = req.body;
+      await Account.update(id, editedAccount);
+      const updated = await Account.getById(id)
+      res.json(updated)
    } catch (error) {
       res.status(500).json({ message: error.message })
    }
@@ -43,7 +47,9 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
    try {
-
+      const { id } = req.params;
+      await Account.delete(id)
+      res.json({ message: `Account with the id ${id} was deleted.`})
    } catch (error) {
       res.status(500).json({ message: error.message })
    }

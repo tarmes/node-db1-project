@@ -12,5 +12,11 @@ module.exports = {
          .then(([id]) => {
             return db('accounts').where('id', id).first()
          })
+   },
+   update(id, account) {
+      return db('accounts').where('id', id).update(account)
+   },
+   delete(id) {
+      return db('accounts').where('id', id).del()
    }
 };
