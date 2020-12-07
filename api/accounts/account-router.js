@@ -25,7 +25,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
    try {
-
+      const newAccount = req.body;
+      const data = await Account.create(newAccount);
+      res.json(data)
    } catch (error) {
       res.status(500).json({ message: error.message })
    }
